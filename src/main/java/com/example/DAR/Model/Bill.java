@@ -48,9 +48,9 @@ public class Bill {
     private String imageUrl;
 
 
-//    @ManyToOne
-//    @JoinColumn(name = "home_id")
-//    private Home home;
+    @ManyToOne
+    @JoinColumn(name = "home_id")
+    private Home home;
 
 
 }

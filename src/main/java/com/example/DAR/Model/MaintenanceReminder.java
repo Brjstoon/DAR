@@ -39,14 +39,14 @@ public class MaintenanceReminder {
     private LocalDate createdAt;
 
 
-//    @ManyToOne
-//    @JoinColumn(name = "home_id")
-//    private Home home;
+    @ManyToOne
+    @JoinColumn(name = "home_id")
+    private Home home;
 
 
-//    @OneToOne
-//    @JoinColumn(name = "homeItem_id")
-//    private HomeItem homeItem;
+    @OneToOne
+    @JoinColumn(name = "homeItem_id")
+    private HomeItem homeItem;
 
 
 

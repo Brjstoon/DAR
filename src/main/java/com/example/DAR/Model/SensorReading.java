@@ -27,8 +27,8 @@ public class SensorReading {
     @Column(nullable = false)
     private LocalDateTime readingDate;
 
-//    @ManyToOne
-//    @JoinColumn(name = "sensor_id")
-//    private Sensor sensors;
+    @ManyToOne
+    @JoinColumn(name = "sensor_id")
+    private Sensor sensors;
 
 }

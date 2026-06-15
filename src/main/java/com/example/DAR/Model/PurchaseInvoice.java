@@ -44,7 +44,8 @@ public class PurchaseInvoice {
     private LocalDate warrantyExpiry;
 
 
-//    @ManyToOne
-//    @JoinColumn(name = "home_id")
-//    private Home home;
+    @ManyToOne
+    @JoinColumn(name = "home_id")
+    private Home home;
+
 }

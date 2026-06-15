@@ -31,9 +31,9 @@ public class Sensor {
     private LocalDate lastPing;
 
 
-//    @ManyToOne
-//    @JoinColumn(name = "home_id")
-//    private Home home;
+    @ManyToOne
+    @JoinColumn(name = "home_id")
+    private Home home;
 
 
 
