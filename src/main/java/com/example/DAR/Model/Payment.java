@@ -1,34 +1,32 @@
 package com.example.DAR.Model;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class HomeItem {
+public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false)
-    private String category;
-    @Column(nullable = false)
-    private String brand;
-    @Column(nullable = false)
-    private LocalDate installDate;
-    @Column(nullable = false)
-    private Integer lifespanMonth;
-    @Column(nullable = false)
-    private LocalTime nextServiceDate;
-    @Column(nullable = false)
-    private String notes;
-    @Column(nullable = false)
-    private Integer homeId;
 
+    private Integer userSubscriptionId;
+
+    @Column(nullable = false)
+    private Double amount;
+    @Column(nullable = false)
+    private String paymentMethod;
+    @Column(nullable = false)
+    private LocalDate paymentDate;
+    @Column(nullable = false)
+    private String status;
+    @Column(nullable = false)
+    private String transactionReference;
 }

@@ -1,9 +1,6 @@
 package com.example.DAR.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,9 +15,12 @@ public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
     private String message;
+    @Column(nullable = false)
     private String type;
+    @Column(nullable = false)
     private LocalDate  sentAt;
-
 }

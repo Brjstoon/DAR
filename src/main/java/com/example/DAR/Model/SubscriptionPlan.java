@@ -1,34 +1,42 @@
 package com.example.DAR.Model;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class HomeItem {
+public class SubscriptionPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
-    private String category;
+    private String name;
     @Column(nullable = false)
-    private String brand;
+
+    private Double price;
     @Column(nullable = false)
-    private LocalDate installDate;
+
+    private Integer maxHomes;
     @Column(nullable = false)
-    private Integer lifespanMonth;
+
+    private Integer maxItems;
     @Column(nullable = false)
-    private LocalTime nextServiceDate;
+
+    private Integer maxNotificationsPerMonth;
     @Column(nullable = false)
-    private String notes;
+
+    private Integer maxAiReportsPerMonth;
     @Column(nullable = false)
-    private Integer homeId;
+
+    private Boolean weatherReminderEnabled;
+    @Column(nullable = false)
+
+    private Boolean usageSpikeDetectionEnabled;
 
 }
