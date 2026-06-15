@@ -31,7 +31,7 @@ public class HomeItem {
 
 
     @ManyToOne
-    @JoinColumn(name = "homeId", nullable = false)
+    @JoinColumn(name = "home_id", nullable = false)
     private Home home;
 
 

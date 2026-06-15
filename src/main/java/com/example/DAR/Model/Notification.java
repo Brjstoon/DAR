@@ -25,6 +25,6 @@ public class Notification {
     private LocalDate  sentAt;
 
         @ManyToOne
-    @JoinColumn(name = "homeId", nullable = false)
+    @JoinColumn(name = "home_id", nullable = false)
     private Home home;
 }

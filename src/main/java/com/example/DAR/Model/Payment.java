@@ -30,7 +30,7 @@ public class Payment {
     private String transactionReference;
 
         @ManyToOne
-    @JoinColumn(name = "userSubscriptionId", nullable = false)
+    @JoinColumn(name = "userSubscription-id", nullable = false)
     private UserSubscription userSubscription;
 
 }
