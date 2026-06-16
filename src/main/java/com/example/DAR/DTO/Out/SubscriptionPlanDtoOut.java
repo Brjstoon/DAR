@@ -1,0 +1,21 @@
+package com.example.DAR.DTO.Out;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class SubscriptionPlanDtoOut {
+    private Integer id;
+    private String name;
+    private Double price;
+    private Integer maxHomes;
+    private Integer maxItems;
+    private Integer maxNotificationsPerMonth;
+    private Integer maxAiReportsPerMonth;
+    private Boolean weatherReminderEnabled;
+    private Boolean usageSpikeDetectionEnabled;
+}
