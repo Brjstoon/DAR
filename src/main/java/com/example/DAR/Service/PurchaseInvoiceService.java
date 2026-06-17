@@ -6,6 +6,7 @@ import com.example.DAR.DTO.In.PurchaseInvoiceDtoIn;
 import com.example.DAR.DTO.Out.PurchaseInvoiceDtoOut;
 import com.example.DAR.Model.Home;
 import com.example.DAR.Model.PurchaseInvoice;
+import com.example.DAR.Repository.HomeRepository;
 import com.example.DAR.Repository.PurchaseInvoiceRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -61,6 +62,6 @@ public class PurchaseInvoiceService {
         List<PurchaseInvoice> invoices = purchaseInvoiceRepository.findPurchaseInvoiceByHomeIdAndCategory(homeId ,category);
         return invoices.stream().map(invoice -> modelMapper.map(invoice, PurchaseInvoiceDtoOut.class)).toList();
     }
-
+    //4 extra endpoint
 
 }

@@ -9,4 +9,5 @@ import java.util.List;
 public interface BillRepository extends JpaRepository<Bill, Integer> {
     Bill findBillById(Integer id);
     List<Bill> findBillByHome(Home home);
+    List<Bill> findByHomeIdAndType(Integer homeId, String type);
 }

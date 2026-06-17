@@ -11,4 +11,5 @@ import java.util.List;
 public interface SensorReadingRepository extends JpaRepository<SensorReading,Integer> {
     SensorReading findSensorReadingById(Integer id);
     List<SensorReading> findSensorReadingBySensors(Sensor sensors);
+    SensorReading findTopBySensorsIdOrderByReadingDateDesc(Integer sensorsId);
 }
