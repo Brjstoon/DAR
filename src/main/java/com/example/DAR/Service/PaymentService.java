@@ -55,7 +55,7 @@ public void addPayment(Integer userSubscriptionId, PaymentDtoIn dto) {
     Payment payment = new Payment();
 
     payment.setUserSubscription(userSubscription);
-    payment.setAmount(dto.getAmount());
+    payment.setAmount(userSubscription.getSubscriptionPlan().getPrice());
     payment.setPaymentMethod(dto.getPaymentMethod());
     payment.setTransactionReference(dto.getTransactionReference());
     payment.setPaymentDate(LocalDate.now());
@@ -67,29 +67,6 @@ public void addPayment(Integer userSubscriptionId, PaymentDtoIn dto) {
     userSubscription.setPaymentStatus(PaymentStatus.PAID);
     userSubscriptionRepository.save(userSubscription);
 }
-
-    public void updatePayment(Integer paymentId, Integer userSubscriptionId, PaymentDtoIn dto) {
-
-        Payment oldPayment = paymentRepository.findPaymentById(paymentId);
-
-        if (oldPayment == null) {
-            throw new ApiException("Payment not found");
-        }
-
-        UserSubscription userSubscription =
-                userSubscriptionRepository.findUserSubscriptionById(userSubscriptionId);
-
-        if (userSubscription == null) {
-            throw new ApiException("User subscription not found");
-        }
-
-        oldPayment.setUserSubscription(userSubscription);
-        oldPayment.setAmount(dto.getAmount());
-        oldPayment.setPaymentMethod(dto.getPaymentMethod());
-        oldPayment.setTransactionReference(dto.getTransactionReference());
-
-        paymentRepository.save(oldPayment);
-    }
 
     public void deletePayment(Integer id) {
         Payment payment = paymentRepository.findPaymentById(id);
