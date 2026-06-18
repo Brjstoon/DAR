@@ -123,7 +123,7 @@ public class NotificationService {
         notification.setTitle(title);
         notification.setMessage(message);
         notification.setType(type);
-//        notification.setIsRead(false);
+        notification.setIsRead(false);
         notification.setSentAt(LocalDateTime.now());
 
         notificationRepository.save(notification);
@@ -131,106 +131,112 @@ public class NotificationService {
 
     private String buildEmailTemplate(String title, String message) {
 
+        String logoUrl = "https://res.cloudinary.com/dhpibz1yq/image/upload/f_auto,q_auto/logo_2_f3xxjb";
+
         return """
-        <div dir="rtl" style="margin:0; padding:0; background-color:#E8DED2; font-family: Arial, sans-serif;">
-            <div style="max-width:680px; margin:auto; padding:34px 18px;">
+        <div dir="rtl" style="margin:0; padding:0; background-color:#E8DED2; font-family: Arial, Tahoma, sans-serif;">
+            <div style="max-width:620px; margin:auto; padding:24px 14px;">
                 
                 <div style="
-                    background: linear-gradient(135deg, #FFF8F4 0%%, #F7E8E1 55%%, #E8DED2 100%%);
-                    border-radius:24px;
+                    background-color:#FFF9F5;
+                    border-radius:20px;
                     overflow:hidden;
-                    border:1px solid #E2CFC3;
-                    box-shadow:0 12px 32px rgba(118,83,69,0.14);
+                    border:1px solid #D8C2B5;
+                    box-shadow:0 8px 24px rgba(59,36,28,0.12);
                 ">
-                    
+
                     <!-- Header -->
                     <div style="
-                        padding:24px 28px 18px;
-                        display:flex;
-                        align-items:center;
-                        justify-content:space-between;
-                        border-bottom:1px solid rgba(166,137,114,0.22);
+                        padding:22px 26px;
+                        background:linear-gradient(135deg, #FFF9F5 0%%, #F3E4DC 100%%);
+                        border-bottom:1px solid #E1CFC4;
                     ">
-                        <div style="text-align:right;">
-                            <p style="
-                                margin:0 0 8px;
-                                display:inline-block;
-                                background-color:#F3DCD2;
-                                color:#765345;
-                                padding:7px 14px;
-                                border-radius:999px;
-                                font-size:13px;
-                            ">
-                                إشعار من منصة دار
-                            </p>
-                            <h1 style="
-                                margin:0;
-                                color:#765345;
-                                font-size:32px;
-                                font-weight:800;
-                                letter-spacing:-1px;
-                            ">
-                                دار
-                            </h1>
-                            <p style="
-                                margin:6px 0 0;
-                                color:#A68972;
-                                font-size:15px;
-                            ">
-                                منصة ذكية لصيانة منزلك
-                            </p>
-                        </div>
+                        <table width="100%%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+                            <tr>
+                                <td style="text-align:right; vertical-align:middle;">
+                                    <div style="
+                                        display:inline-block;
+                                        background-color:#F1DCD2;
+                                        color:#4A2F25;
+                                        padding:6px 14px;
+                                        border-radius:999px;
+                                        font-size:13px;
+                                        font-weight:bold;
+                                        margin-bottom:10px;
+                                    ">
+                                        إشعار من منصة دار
+                                    </div>
 
-                        <div style="
-                            width:78px;
-                            height:78px;
-                            border-radius:20px;
-                            background-color:#FFFFFF;
-                            border:1px solid #E8DED2;
-                            display:flex;
-                            align-items:center;
-                            justify-content:center;
-                            box-shadow:0 8px 20px rgba(118,83,69,0.10);
-                            font-size:38px;
-                        ">
-                            🏠
-                        </div>
+                                    <h1 style="
+                                        margin:0;
+                                        color:#3B241C;
+                                        font-size:30px;
+                                        font-weight:900;
+                                    ">
+                                        دار
+                                    </h1>
+
+                                    <p style="
+                                        margin:6px 0 0;
+                                        color:#5A3A2E;
+                                        font-size:14px;
+                                        font-weight:bold;
+                                    ">
+                                        منصة ذكية لصيانة منزلك
+                                    </p>
+                                </td>
+
+                                <td style="width:88px; text-align:left; vertical-align:middle;">
+                                    <img src="%s" alt="DAR Logo" style="
+                                        width:72px;
+                                        height:72px;
+                                        object-fit:contain;
+                                        display:block;
+                                        margin-right:auto;
+                                        border-radius:16px;
+                                    ">
+                                </td>
+                            </tr>
+                        </table>
                     </div>
 
                     <!-- Body -->
-                    <div style="padding:34px 30px 30px; text-align:right;">
+                    <div style="padding:30px 28px 26px; text-align:right;">
                         <h2 style="
-                            color:#765345;
-                            font-size:24px;
-                            margin:0 0 18px;
-                            font-weight:800;
+                            color:#3B241C;
+                            font-size:23px;
+                            margin:0 0 16px;
+                            font-weight:900;
+                            line-height:1.6;
                         ">
                             %s
                         </h2>
 
                         <p style="
-                            font-size:17px;
+                            color:#241713;
+                            font-size:16px;
                             line-height:2;
-                            color:#3E302A;
                             margin:0;
+                            font-weight:500;
                         ">
                             %s
                         </p>
 
                         <div style="
-                            margin-top:28px;
-                            padding:18px 20px;
-                            background-color:rgba(255,255,255,0.72);
-                            border:1px solid rgba(166,137,114,0.24);
-                            border-radius:18px;
+                            margin-top:24px;
+                            background-color:#FFFFFF;
+                            border:1px solid #E0CDC2;
+                            border-radius:16px;
+                            padding:16px 18px;
                         ">
                             <p style="
                                 margin:0;
-                                color:#765345;
-                                font-size:15px;
-                                line-height:1.8;
+                                color:#3B241C;
+                                font-size:14px;
+                                line-height:1.9;
+                                font-weight:bold;
                             ">
-                                يمكنك متابعة تفاصيل منزلك، الصيانة، الفواتير، والتنبيهات من خلال منصة دار.
+                                يمكنك متابعة الصيانة، الفواتير، التنبيهات، وتفاصيل منزلك من خلال منصة دار.
                             </p>
                         </div>
                     </div>
@@ -238,28 +244,30 @@ public class NotificationService {
                     <!-- Footer -->
                     <div style="
                         background-color:#3B241C;
-                        padding:18px 28px;
+                        padding:16px 24px;
                         text-align:center;
                     ">
                         <p style="
-                            font-size:13px;
-                            color:#E8DED2;
                             margin:0;
+                            color:#F4E9DF;
+                            font-size:13px;
+                            font-weight:bold;
                         ">
                             © 2026 دار. جميع الحقوق محفوظة.
                         </p>
                         <p style="
+                            margin:7px 0 0;
+                            color:#D8BFAF;
                             font-size:12px;
-                            color:#A68972;
-                            margin:8px 0 0;
                         ">
                             هذه رسالة تلقائية من منصة دار
                         </p>
                     </div>
+
                 </div>
             </div>
         </div>
-        """.formatted(title, message);
+        """.formatted(logoUrl, title, message);
     }
 
     public List<Notification> getNotificationsByUser(Integer userId) {

@@ -40,9 +40,10 @@ public class MaintenanceReminderController {
         return ResponseEntity.status(200).body(maintenanceReminderService.getRemindersBySeason(season));
     }
 
-    @PostMapping("/add/{homeId}/{homeItemId}")
-    public ResponseEntity<?> addMaintenanceReminder(@PathVariable Integer homeId, @PathVariable Integer homeItemId, @RequestBody @Valid MaintenanceReminderDTOIn maintenanceReminderDTOIn) {
-        maintenanceReminderService.addMaintenanceReminder(homeId, homeItemId, maintenanceReminderDTOIn);
+    @PostMapping("/add/{maintenanceId}")
+    public ResponseEntity<?> addMaintenanceReminder(@PathVariable Integer maintenanceId,
+                                                    @RequestBody @Valid MaintenanceReminderDTOIn dto) {
+        maintenanceReminderService.addMaintenanceReminder(maintenanceId, dto);
         return ResponseEntity.status(200).body(new ApiResponse("Maintenance reminder added successfully"));
     }
 
@@ -89,5 +90,16 @@ public class MaintenanceReminderController {
     @GetMapping("/summary/{homeId}")
     public ResponseEntity<?> getReminderSummary(@PathVariable Integer homeId) {
         return ResponseEntity.status(200).body(maintenanceReminderService.getReminderSummary(homeId));
+    }
+
+    @GetMapping("/ai-weather-advice/{homeId}")
+    public ResponseEntity<?> getAIWeatherMaintenanceAdvice(@PathVariable Integer homeId) {
+        return ResponseEntity.status(200).body(new ApiResponse(maintenanceReminderService.getAIWeatherMaintenanceAdvice(homeId)));
+    }
+    @PostMapping("/ai-weather-suggestion/{homeId}/{homeItemId}")
+    public ResponseEntity<?> createAIWeatherReminder(@PathVariable Integer homeId,
+                                                     @PathVariable Integer homeItemId) {
+        maintenanceReminderService.createAIWeatherReminder(homeId, homeItemId);
+        return ResponseEntity.status(200).body(new ApiResponse("AI weather-based reminder created successfully"));
     }
 }
