@@ -18,12 +18,14 @@ public class Notification {
     private Integer id;
     @Column(nullable = false)
     private String title;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String message;
     @Column(nullable = false)
     private String type;
     @Column(nullable = false)
     private LocalDateTime sentAt;
+    @Column(nullable = false)
+    private Boolean isRead = false;
 
     @ManyToOne
     @JoinColumn(name = "home_id")

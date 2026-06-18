@@ -17,5 +17,11 @@ public class MaintenanceReminderDTOOut {
     private LocalDate createdAt;
     private String homeAddress;      // from Home.address
     private String homeItemCategory; // from HomeItem.category
-    private String homeItemBrand;    // from HomeItem.brand
+    private String homeItemBrand;// from HomeItem.brand
+
+
+    private Integer maintenanceId;
+    private String maintenanceTitle;
+    private String maintenancePriority;
+    private String maintenanceStatus;
 }
