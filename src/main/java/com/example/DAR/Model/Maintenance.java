@@ -1,11 +1,13 @@
 package com.example.DAR.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -46,7 +48,10 @@ public class Maintenance {
 
 
     @OneToOne
-    @JoinColumn(name = "homeItem_id")
+    @JoinColumn(name = "home_tem_id")
     private HomeItem homeItem;
 
+    @OneToMany(mappedBy = "maintenance", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<MaintenanceReminder> maintenanceReminders;
 }

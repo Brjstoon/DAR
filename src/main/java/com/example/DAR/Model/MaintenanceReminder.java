@@ -45,9 +45,11 @@ public class MaintenanceReminder {
 
 
     @OneToOne
-    @JoinColumn(name = "homeItem_id")
+    @JoinColumn(name = "home_item_id")
     private HomeItem homeItem;
 
-
+    @ManyToOne
+    @JoinColumn(name = "maintenance_id", nullable = false)
+    private Maintenance maintenance;
 
 }

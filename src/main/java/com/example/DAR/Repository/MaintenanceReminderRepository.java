@@ -16,4 +16,5 @@ public interface MaintenanceReminderRepository extends JpaRepository<Maintenance
     List<MaintenanceReminder> findMaintenanceRemindersByIsSent(Boolean isSent);
 
     List<MaintenanceReminder> findMaintenanceRemindersBySeason(String season);
+    List<MaintenanceReminder> findMaintenanceRemindersByMaintenanceId(Integer maintenanceId);
 }
