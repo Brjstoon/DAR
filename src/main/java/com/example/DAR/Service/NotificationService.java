@@ -3,6 +3,8 @@ package com.example.DAR.Service;
 
 import com.example.DAR.Api.ApiException;
 import com.example.DAR.DTO.Out.NotificationSummaryDTOOut;
+import com.example.DAR.Enums.PaymentStatus;
+import com.example.DAR.Enums.UserSubscriptionStatus;
 import com.example.DAR.Model.Home;
 import com.example.DAR.Model.HomeItem;
 import com.example.DAR.Model.Notification;
@@ -651,7 +653,9 @@ public void sendDailyWeatherTipsAutomatically() {
         if (!user.getSmartAlertsEnabled()) {
             throw new ApiException("Smart alerts are disabled");
         }
-
+        if (!hasDailyAiReminderAccess(user)) {
+            throw new ApiException("Daily AI reminder is not available in the user's subscription plan");
+        }
         String weatherDescription =
                 weatherService.getWeatherDescription(home.getCity());
 
@@ -711,6 +715,21 @@ public void sendDailyWeatherTipsAutomatically() {
                 "نصيحة يومية من دار",
                 htmlMessage
         );
+    }
+    // helper
+    private boolean hasDailyAiReminderAccess(User user) {
+
+        if (user.getUserSubscriptions() == null) {
+            return false;
+        }
+
+        return user.getUserSubscriptions().stream()
+                .anyMatch(subscription ->
+                        subscription.getStatus() == UserSubscriptionStatus.ACTIVE
+                                && subscription.getPaymentStatus() == PaymentStatus.PAID
+                                && subscription.getSubscriptionPlan() != null
+                                && Boolean.TRUE.equals(subscription.getSubscriptionPlan().getDailyAIReminder())
+                );
     }
 }
 
