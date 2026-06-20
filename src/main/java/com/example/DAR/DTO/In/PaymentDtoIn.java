@@ -12,9 +12,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class PaymentDtoIn {
 
-    @NotNull(message = "Amount is required")
-    @Positive(message = "Amount must be positive")
-    private Double amount;
 
     @NotEmpty(message = "Payment method is required")
     private String paymentMethod;

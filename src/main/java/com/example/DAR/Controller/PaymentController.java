@@ -27,14 +27,6 @@ public class PaymentController {
         return ResponseEntity.status(200).body(new ApiResponse("Payment added successfully"));
     }
 
-    @PutMapping("/update/{paymentId}/{userSubscriptionId}")
-    public ResponseEntity updatePayment(@PathVariable Integer paymentId,
-                                        @PathVariable Integer userSubscriptionId,
-                                        @RequestBody @Valid PaymentDtoIn dto) {
-        paymentService.updatePayment(paymentId, userSubscriptionId, dto);
-        return ResponseEntity.status(200).body(new ApiResponse("Payment updated successfully"));
-    }
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deletePayment(@PathVariable Integer id) {
         paymentService.deletePayment(id);

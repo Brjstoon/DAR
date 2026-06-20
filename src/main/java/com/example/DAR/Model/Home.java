@@ -1,5 +1,6 @@
 package com.example.DAR.Model;
 
+import com.example.DAR.Enums.HomePropertyType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,9 @@ public class Home {
     private Integer id;
 
     @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
     private String address;
 
     @Column(nullable = false)
@@ -34,6 +38,9 @@ public class Home {
     @Column(nullable = false)
     private Integer buildYear;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private HomePropertyType propertyType;
 
 
     @ManyToOne
