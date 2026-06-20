@@ -4,6 +4,7 @@ package com.example.DAR.Service;
 import com.example.DAR.Api.ApiException;
 import lombok.RequiredArgsConstructor;
 
+import com.example.DAR.Model.HomeItem;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -195,6 +196,23 @@ public class AiService {
         }
     }
 
+    public String generateMonthlyReportSummary(String homeAddress, int year, int month, String billsData, String purchasesData) {
+        String prompt = String.format(
+            "You are a smart home management assistant. Write a professional monthly report in English for the home at: %s\n" +
+            "Period: %d/%d\n\n" +
+            "Bills Data:\n%s\n\n" +
+            "Purchases Data:\n%s\n\n" +
+            "Write the report with this structure (plain text only, no markdown symbols like # or **):\n" +
+            "1. Consumption Summary: (analysis of electricity, water, and gas bills)\n" +
+            "2. Expenses Summary: (total purchases by category)\n" +
+            "3. Observations: (any notable increases or decreases)\n" +
+            "4. Recommendations: (3 practical saving tips)\n" +
+            "Keep it concise and clear.",
+            homeAddress, month, year, billsData, purchasesData
+        );
+        return callClaudeApiText(prompt);
+    }
+
     public String generateAnomalyExplanation(String billType, int currentConsumption, double avgConsumption, String unit) {
         String typeAr = switch (billType.toUpperCase()) {
             case "ELECTRICITY" -> "الكهرباء";
@@ -230,6 +248,23 @@ public class AiService {
                 topic, tone, language
         );
         return callClaudeApi(prompt);
+    }
+
+    public String generateHomeItemMaintenanceAdvice(HomeItem homeItem) {
+        String prompt = "اكتب نصائح صيانة قصيرة باللغة العربية لهذا الجهاز. " +
+                "استخدم لغة بسيطة ومباشرة. أعد 3 نقاط فقط. " +
+                "Device name: " + homeItem.getName() + ". " +
+                "Category: " + homeItem.getCategory() + ". " +
+                "Brand: " + homeItem.getBrand() + ". " +
+                "Model: " + homeItem.getModel() + ". " +
+                "Location: " + homeItem.getLocation() + ". " +
+                "Install date: " + homeItem.getInstallDate() + ". " +
+                "Lifespan months: " + homeItem.getLifespanMonth() + ". " +
+                "Status: " + homeItem.getStatus() + ". " +
+                "Next service date: " + homeItem.getNextServiceDate() + ". " +
+                "Notes: " + homeItem.getNotes() + ".";
+
+        return callClaudeApiText(prompt);
     }
 
 }

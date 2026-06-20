@@ -2,20 +2,26 @@ package com.example.DAR.Service;
 
 import com.example.DAR.Api.ApiException;
 import com.example.DAR.DTO.In.HomeItemDTOIn;
+import com.example.DAR.DTO.Out.AiAdviceDTOOut;
 import com.example.DAR.DTO.Out.HomeItemDTOOut;
 import com.example.DAR.DTO.Out.HomeItemSummaryDTOOut;
+import com.example.DAR.DTO.Out.NearbyPlaceDTOOut;
+import com.example.DAR.Enums.UserSubscriptionStatus;
 import com.example.DAR.Model.Home;
 import com.example.DAR.Model.HomeItem;
 import com.example.DAR.Enums.HomeItemCategory;
 import com.example.DAR.Enums.HomeItemStatus;
+import com.example.DAR.Model.UserSubscription;
 import com.example.DAR.Repository.HomeItemRepository;
 import com.example.DAR.Repository.HomeRepository;
+import com.example.DAR.Repository.UserSubscriptionRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -24,6 +30,9 @@ public class HomeItemService {
 
     private final HomeItemRepository homeItemRepository;
     private final HomeRepository homeRepository;
+    private final UserSubscriptionRepository userSubscriptionRepository;
+    private final OverpassService overpassService;
+    private final AiService aiService;
     private final ModelMapper modelMapper;
 
     public List<HomeItemDTOOut> getAll() {
@@ -36,6 +45,13 @@ public class HomeItemService {
         Home home = homeRepository.findHomeById(homeId);
         if (home == null) {
             throw new ApiException("Home not found");
+        }
+        UserSubscription subscription = userSubscriptionRepository.findUserSubscriptionByUserIdAndStatus(home.getUser().getId(), UserSubscriptionStatus.ACTIVE);
+        if (subscription == null) {
+            throw new ApiException("Active subscription not found");
+        }
+        if (homeItemRepository.countHomeItemsByHomeUserId(home.getUser().getId()) >= subscription.getSubscriptionPlan().getMaxItems()) {
+            throw new ApiException("You have reached the maximum number of items for your subscription");
         }
         HomeItem homeItem = new HomeItem();
         homeItem.setName(homeItemDTOIn.getName());
@@ -178,5 +194,30 @@ public class HomeItemService {
         }
 
         return new HomeItemSummaryDTOOut(totalItems, needsMaintenance, upcomingServiceCount, averageLifePercentage);
+    }
+
+    public List<NearbyPlaceDTOOut> getNearbyMaintenancePlaces(Integer itemId) {
+        HomeItem homeItem = homeItemRepository.findHomeItemById(itemId);
+        if (homeItem == null) {
+            throw new ApiException("Home item not found");
+        }
+
+        Home home = homeItem.getHome();
+        return overpassService.getNearbyMaintenancePlaces(home.getLatitude(), home.getLongitude(), homeItem.getCategory());
+    }
+
+    public AiAdviceDTOOut getAiMaintenanceAdvice(Integer itemId) {
+        HomeItem homeItem = homeItemRepository.findHomeItemById(itemId);
+        if (homeItem == null) {
+            throw new ApiException("Home item not found");
+        }
+
+        String advice = aiService.generateHomeItemMaintenanceAdvice(homeItem);
+        List<String> adviceList = Arrays.stream(advice.split("\\n"))
+                .map(line -> line.replaceFirst("^-\\s*", "").trim())
+                .filter(line -> !line.isEmpty())
+                .toList();
+
+        return new AiAdviceDTOOut(adviceList);
     }
 }
