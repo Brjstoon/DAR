@@ -12,4 +12,5 @@ public class BillMonthlyReportDtoOut {
     private Integer totalConsumption;
     private Double totalAmount;
     private Integer billCount;
+    private String status;
 }

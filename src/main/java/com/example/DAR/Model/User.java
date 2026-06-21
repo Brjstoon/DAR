@@ -38,6 +38,9 @@ public class User {
 
     //
     @Column(nullable = false)
+    private String role = "USER";
+
+    @Column(nullable = false)
     private Boolean smartAlertsEnabled = false;
 
     @Column(nullable = false)
