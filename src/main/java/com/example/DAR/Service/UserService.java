@@ -57,6 +57,10 @@ public class UserService {
             throw new ApiException("Email already exists");
         }
 
+        if (!dto.getPassword().equals(dto.getPasswordConfirmation())) {
+            throw new ApiException("Passwords don't match");
+        }
+
         User user = modelMapper.map(dto, User.class);
         user.setAiCounter(0);
         user.setCreateAt(LocalDate.now());

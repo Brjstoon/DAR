@@ -28,6 +28,9 @@ public class UserDtoIn {
     @NotEmpty(message = "Password is required")
     private String password;
 
+    @NotEmpty(message = "Password Confirmation is required")
+    private String passwordConfirmation;
+
     @NotEmpty(message = "Phone number is required")
     @Pattern(regexp = "^(?:\\+?966|0)?5[0-9]{8}$", message = "Invalid Saudi mobile number format")
     private String phoneNumber;

@@ -35,11 +35,11 @@ public class UserController {
         return ResponseEntity.ok(Map.of("token", token));
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<?> addUser(@RequestBody @Valid UserDtoIn dto) {
-        userService.addUser(dto);
-        return ResponseEntity.status(200).body(new ApiResponse("User added successfully"));
-    }
+//    @PostMapping("/add")
+//    public ResponseEntity<?> addUser(@RequestBody @Valid UserDtoIn dto) {
+//        userService.addUser(dto);
+//        return ResponseEntity.status(200).body(new ApiResponse("User added successfully"));
+//    }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Integer id,
