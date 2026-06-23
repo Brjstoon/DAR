@@ -206,63 +206,70 @@ The collection includes:
 
 ---
 
-## 👩‍💻  Implemented Endpoints
+## 👩‍💻 My Implemented Endpoints
 
-This section highlights the API endpoints 
+This section highlights the API endpoints I worked on as part of my contribution to the DAR platform.
+My work focused mainly on homes, home items, user profile flow, subscriptions, payments, location lookup, and AI-powered home item support.
 
-### 🤖 Chatbot Endpoints
-
-| Method | Endpoint                    | Description                                                  | Access                 |
-| ------ | --------------------------- | ------------------------------------------------------------ | ---------------------- |
-| `GET`  | `/api/v1/chatbot/questions` | Returns suggested chatbot questions for users.               | Public                 |
-| `POST` | `/api/v1/chatbot/ask`       | Sends a user question to the chatbot and returns the answer. | Public / Authenticated |
-
-### 🛠️ Maintenance Endpoints
-
-| Method | Endpoint                                        | Description                                               | Access        |
-| ------ | ----------------------------------------------- | --------------------------------------------------------- | ------------- |
-| `GET`  | `/api/v1/maintenance/upcoming/{homeId}`         | Returns upcoming maintenance records for a specific home. | Owner / Admin |
-| `GET`  | `/api/v1/maintenance/overdue/{homeId}`          | Returns overdue maintenance records for a specific home.  | Owner / Admin |
-| `PUT`  | `/api/v1/maintenance/mark-done/{maintenanceId}` | Marks a maintenance record as completed.                  | Owner / Admin |
-
-### ⏰ Maintenance Reminder Endpoints
-
-| Method | Endpoint                                                         | Description                                             | Access        |
-| ------ | ---------------------------------------------------------------- | ------------------------------------------------------- | ------------- |
-| `POST` | `/api/v1/maintenance-reminder/add/{maintenanceId}`               | Adds a maintenance reminder for a maintenance record.   | Owner / Admin |
-| `PUT`  | `/api/v1/maintenance-reminder/update/{id}/{homeId}/{homeItemId}` | Updates a maintenance reminder and validates ownership. | Owner / Admin |
-| `PUT`  | `/api/v1/maintenance-reminder/mark-sent/{id}`                    | Marks a maintenance reminder as sent.                   | Owner / Admin |
-| `GET`  | `/api/v1/maintenance-reminder/upcoming/{homeId}`                 | Returns upcoming reminders for a home.                  | Owner / Admin |
-| `GET`  | `/api/v1/maintenance-reminder/today/{homeId}`                    | Returns today’s reminders for a home.                   | Owner / Admin |
-| `POST` | `/api/v1/maintenance-reminder/send/{reminderId}`                 | Sends a maintenance reminder manually.                  | Owner / Admin |
-| `PUT`  | `/api/v1/maintenance-reminder/reactivate/{reminderId}`           | Reactivates a reminder after it has been sent.          | Owner / Admin |
-| `GET`  | `/api/v1/maintenance-reminder/summary/{homeId}`                  | Returns a summary of reminders for a home.              | Owner / Admin |
-| `GET`  | `/api/v1/maintenance-reminder/ai-weather-advice/{homeId}`        | Generates AI weather-based maintenance advice.          | Owner / Admin |
-
-### 🔔 Notification Endpoints
-
-| Method   | Endpoint                                             | Description                                        | Access        |
-| -------- | ---------------------------------------------------- | -------------------------------------------------- | ------------- |
-| `PUT`    | `/api/v1/notification/mark-as-read/{notificationId}` | Marks one notification as read.                    | Owner / Admin |
-| `PUT`    | `/api/v1/notification/mark-all-as-read`              | Marks all user notifications as read.              | Authenticated |
-| `DELETE` | `/api/v1/notification/delete/{notificationId}`       | Deletes a notification.                            | Owner / Admin |
-| `GET`    | `/api/v1/notification/summary`                       | Returns notification summary for the current user. | Authenticated |
-| `POST`   | `/api/v1/notification/weather-alert/{homeId}`        | Creates a weather alert notification for a home.   | Admin         |
-| `POST`   | `/api/v1/notification/smart-alert-intro/{userId}`    | Sends the smart alert introduction notification.   | Admin         |
-
-### 💳 User Subscription Endpoints
-
-| Method   | Endpoint                                    | Description                                    | Access |
-| -------- | ------------------------------------------- | ---------------------------------------------- | ------ |
-| `GET`    | `/api/v1/user-subscription/status/{status}` | Returns user subscriptions filtered by status. | Admin  |
-| `DELETE` | `/api/v1/user-subscription/delete/{id}`     | Deletes a user subscription.                   | Admin  |
-
-### 📈 Bill Endpoints
+### Home Endpoints
 
 | Method | Endpoint | Description | Access |
 |---|---|---|---|
-| `GET` | `/api/v1/bill/get/anomalies/{homeId}` | Get bills with abnormal consumption or unusual usage spikes. | Admin or home owner |
-| `GET` | `/api/v1/bill/anomalies-count/{homeId}` | Count the number of detected consumption anomalies for a home. | Admin or home owner |
+| `GET` | `/api/v1/home/user-homes` | Returns all homes owned by the current authenticated user. | Authenticated |
+
+### Home Item Endpoints
+
+| Method | Endpoint | Description | Access |
+|---|---|---|---|
+| `GET` | `/api/v1/home-item/get/home/{homeId}/category/{category}` | Returns home items filtered by category. | Owner / Admin |
+| `GET` | `/api/v1/home-item/get/home/{homeId}/status/{status}` | Returns home items filtered by status. | Owner / Admin |
+| `GET` | `/api/v1/home-item/get/home/{homeId}/upcoming-service` | Returns items with upcoming service dates. | Owner / Admin |
+| `GET` | `/api/v1/home-item/get/home/{homeId}/search` | Searches home items by keyword. | Owner / Admin |
+| `GET` | `/api/v1/home-item/get/home/{homeId}/summary` | Returns a summary of home item statuses. | Owner / Admin |
+| `GET` | `/api/v1/home-item/get/{itemId}/nearby-maintenance` | Finds nearby maintenance places for a selected item. | Owner / Admin |
+| `GET` | `/api/v1/home-item/get/{itemId}/ai-maintenance-advice` | Generates AI maintenance advice for a selected item. | Owner / Admin |
+| `POST` | `/api/v1/home-item/get/{itemId}/ai-troubleshooting` | Generates AI troubleshooting steps based on the user's issue description. | Owner / Admin |
+| `GET` | `/api/v1/home-item/get/{itemId}/ai-nearby-recommendation` | Generates an AI recommendation for the best nearby maintenance option. | Owner / Admin |
+
+### User Endpoints
+
+| Method | Endpoint | Description | Access |
+|---|---|---|---|
+| `PUT` | `/api/v1/user/update-profile` | Updates the current authenticated user's profile. | Authenticated |
+| `DELETE` | `/api/v1/user/delete-account` | Deletes the current authenticated user's account. | Authenticated |
+| `GET` | `/api/v1/user/profile` | Returns the current authenticated user's profile. | Authenticated |
+| `GET`  | `/api/v1/user/email/{email}`       | Finds a user by email.                                 | Admin         |
+| `GET`  | `/api/v1/user/username/{username}` | Finds a user by username.                              | Admin         |
+| `PUT`  | `/api/v1/user/toggle-smart-alerts` | Enables or disables smart alerts for the current user. | Authenticated |
+
+### User Subscription Endpoints
+
+| Method | Endpoint | Description | Access |
+|---|---|---|---|
+| `POST` | `/api/v1/user-subscription/subscribe/{planId}` | Creates a pending subscription for the selected plan. | Authenticated |
+| `POST` | `/api/v1/user-subscription/upgrade/{planId}` | Creates a pending upgraded subscription for the selected plan. | Authenticated |
+| `GET` | `/api/v1/user-subscription/user-subscriptions` | Returns subscriptions for the current authenticated user. | Authenticated |
+
+### Payment Endpoints
+
+| Method | Endpoint | Description | Access |
+|---|---|---|---|
+| `GET` | `/api/v1/payment/user-payments` | Returns payments for the current authenticated user. | Authenticated |
+
+### 💡 Bills 
+
+| Method | Endpoint | Description | Authorization |
+|--------|----------|-------------|---------------|
+| `GET`    | `/electricity/{homeId}` | Current month electricity usage | ADMIN or home owner |
+| `GET`    | `/water/{homeId}` | Current month water usage | ADMIN or home owner |
+| `GET`    | `/gas/{homeId}` | Current month gas usage | ADMIN or home owner |
+
+### Location Endpoints
+
+| Method | Endpoint | Description | Access |
+|---|---|---|---|
+| `GET` | `/api/v1/location/geocode` | Converts a written address into latitude and longitude using Nominatim. | Public / Authenticated depending on security config |
+
 ---
 
 ## 🔌 External APIs & Integrations
@@ -282,6 +289,10 @@ DAR uses external services to support smart features, automation, notifications,
     <td><b>Weather API</b></td>
     <td>Weather-based maintenance alerts</td>
   </tr>
+  <tr>
+    <td><b>n8n Webhooks</b></td>
+    <td>Sensor connection and sensor analysis automation</td>
+  </tr>
   <tr bgcolor="#E8DED2">
     <td><b>Twilio WhatsApp & Voice</b></td>
     <td>WhatsApp reminders and urgent calls</td>
@@ -293,6 +304,14 @@ DAR uses external services to support smart features, automation, notifications,
   <tr bgcolor="#E8DED2">
     <td><b>Lemon Squeezy</b></td>
     <td>Subscription checkout and payment links</td>
+  </tr>
+  <tr>
+    <td><b>Overpass API</b></td>
+    <td>Nearby maintenance places</td>
+  </tr>
+  <tr bgcolor="#E8DED2">
+    <td><b>Nominatim API</b></td>
+    <td>Address geocoding</td>
   </tr>
   <tr>
     <td><b>AWS Elastic Beanstalk</b></td>
@@ -330,13 +349,13 @@ DAR uses external services to support smart features, automation, notifications,
 
 <table>
   <tr>
-    <td>🤖 AI chatbot to answer user questions about the platform.</td>
+    <td>🛠️ AI maintenance advice for home items.</td>
   </tr>
   <tr bgcolor="#E8DED2">
-    <td>🌦️ AI weather-based maintenance advice for each home.</td>
+    <td>🔍 AI troubleshooting steps for item issues.</td>
   </tr>
   <tr>
-    <td>🔔 Daily smart AI reminders for users with an active paid subscription.</td>
+    <td>📍 AI nearby maintenance recommendation.</td>
   </tr>
 </table>
 
