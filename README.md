@@ -283,15 +283,7 @@ DAR uses external services to support smart features, automation, notifications,
   </tr>
   <tr>
     <td><b>OpenAI API</b></td>
-    <td>Chatbot answers and AI maintenance advice</td>
-  </tr>
-  <tr bgcolor="#E8DED2">
-    <td><b>Weather API</b></td>
-    <td>Weather-based maintenance alerts</td>
-  </tr>
-  <tr>
-    <td><b>n8n Webhooks</b></td>
-    <td>Sensor connection and sensor analysis automation</td>
+    <td>AI maintenance advice</td>
   </tr>
   <tr bgcolor="#E8DED2">
     <td><b>Twilio WhatsApp & Voice</b></td>
