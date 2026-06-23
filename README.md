@@ -279,10 +279,6 @@ DAR uses external services to support smart features, automation, notifications,
     <td><b>Weather API</b></td>
     <td>Weather-based maintenance alerts</td>
   </tr>
-  <tr>
-    <td><b>n8n Webhooks</b></td>
-    <td>Sensor connection and sensor analysis automation</td>
-  </tr>
   <tr bgcolor="#E8DED2">
     <td><b>Twilio WhatsApp & Voice</b></td>
     <td>WhatsApp reminders and urgent calls</td>
@@ -338,9 +334,6 @@ DAR uses external services to support smart features, automation, notifications,
   </tr>
   <tr>
     <td>🔔 Daily smart AI reminders for users with an active paid subscription.</td>
-  </tr>
-  <tr bgcolor="#E8DED2">
-    <td>📊 AI-assisted sensor analysis through n8n webhooks.</td>
   </tr>
 </table>
 
