@@ -144,30 +144,13 @@ http://Dar-env.eba-yke92rm3.eu-central-1.elasticbeanstalk.com
 
 ## 📬 Postman Collection
 
-### Base URL
-
-```http
-https://documenter.getpostman.com/view/37607702/2sBXwwnSzc
-```
-
-
 The project APIs are documented and tested using Postman.
+
+[View Postman Collection](https://documenter.getpostman.com/view/37607702/2sBXwwnSzc)
 
 The collection includes:
 
-* Authentication
-* User management
-* Homes
-* Home items
-* Maintenance
-* Maintenance reminders
-* Notifications
-* Bills
-* Purchase invoices
-* Sensors
-* Subscriptions
-* Payments
-* Chatbot
+Authentication • User management • Homes • Home items • Maintenance • Maintenance reminders • Notifications • Bills • Purchase invoices • Sensors • Subscriptions • Payments • Chatbot
 
 ---
 
