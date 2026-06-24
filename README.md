@@ -1,5 +1,9 @@
 <div align="center">
 
+<img src="https://res.cloudinary.com/dhpibz1yq/image/upload/v1781622683/logo_2_f3xxjb.png" alt="DAR Logo" width="180"/>
+
+<br>
+
 # 🏠 DAR – Smart Home Care System
 
 ### دار – نظام ذكي للعناية بالمنزل
